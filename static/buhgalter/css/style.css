@@ -1032,9 +1032,10 @@ section.sale .timer_block, section.sale .form {
 
 input#submitform {
     background: #179bd7;
-    width: 300px;
+    width: 100%;
     padding: 0;
-    color: #FFF
+    color: #FFF;
+    max-width: 300px;
 }
 
 input#submitform:hover {

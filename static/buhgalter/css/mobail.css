@@ -245,14 +245,22 @@
       -ms-grid-row-align: center;
       align-self: center;
       width: 100%; }
+      header .call .adress p {
+        margin: 0 auto; }
     header .call .phones {
       margin: 0 auto; }
+  .page .call {
+    width: 100%; }
   .page .call .adress {
     width: 100%; }
-  header .call a.btn {
+  header .page .call a.btn {
     float: none;
     margin: 0 auto; } }
 
 @media (max-width: 530px) {
   section h1 {
-    font-size: 35px; } }
+    font-size: 35px; }
+  section.map .page .contacts p span {
+    font-size: 30px; }
+  h3 {
+    font-size: 32px !important; } }
