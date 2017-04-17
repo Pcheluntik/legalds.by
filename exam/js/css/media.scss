@@ -1,0 +1,67 @@
+$screen-size-xs-min:  768px;
+$screen-size-xs-max: 767px;
+$screen-size-sm-min: 959px;
+$screen-size-sm-max: 960px;
+$screen-size-md-min: 1200px;
+$screen-size-md-max: 1199px;
+$quantity: 10;
+$col-padding: 15px;
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.container {
+	width:960px;
+	@include center-block;
+}
+
+@media screen and (max-width: $screen-size-xs-max) {
+	.container {
+		@include center-block;
+		width:100%;
+	}
+}
+@media screen and (min-width:$screen-size-xs-min) and (max-width:$screen-size-sm-min){
+	.container {
+		@include center-block;
+		width:640px;
+	}
+}
+@media screen and (min-width:$screen-size-sm-max)  {
+	.container {
+		@include center-block;
+		width:960px;
+
+	}
+}
+
+.clearfix:after {
+  content: " ";
+  clear: both;
+  display: table;
+}
+@mixin xs-column($col) {
+	@media screen {
+		float:left;
+		width: $col*100%/$quantity;
+		padding-left:$col-padding;
+		padding-right: $col-padding
+	}
+}
+@mixin sm-column($col) {
+	@media screen and (min-width:$screen-size-xs-min) and (max-width:$screen-size-sm-min){
+		float:left;
+		width: $col*100%/$quantity;
+		padding-left:$col-padding;
+		padding-right: $col-padding
+	}
+}
+@mixin md-column($col){
+	@media screen and (min-width:$screen-size-sm-max) {
+		float:left;
+		width: $col*100%/$quantity;
+		padding-left:$col-padding;
+		padding-right: $col-padding
+	}
+}

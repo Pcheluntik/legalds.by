@@ -1,0 +1,258 @@
+@media (max-width: 1130px) {
+  .page {
+    width: 100%; }
+  nav {
+    min-width: 0;
+    position: fixed;
+    width: 0;
+    right: 0;
+    height: 100%;
+    display: none;
+    transition: 0.25s; }
+  header {
+    padding: 0;
+    height: auto; }
+    header .header_info {
+      width: 20%;
+      margin-left: 1%; }
+  menu {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+    menu li {
+      height: auto;
+      padding: 0; }
+      menu li a {
+        width: 100%; }
+  .menu-btn {
+    position: fixed;
+    display: block;
+    width: 50px;
+    height: 50px;
+    box-shadow: inset 0 40px 100px 0px #179bd7;
+    right: 0;
+    top: 0;
+    z-index: 1500;
+    border-bottom-left-radius: 20px; }
+    .menu-btn span {
+      display: block;
+      position: absolute;
+      height: 5px;
+      width: 28px;
+      margin-bottom: -2px;
+      left: 11px;
+      top: 10px;
+      background: #4F4D4E;
+      border-radius: 9px;
+      opacity: 1;
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+      -webkit-transition: 0.25s ease-in-out;
+      -moz-transition: 0.25s ease-in-out;
+      -o-transition: 0.25s ease-in-out;
+      transition: 0.25s ease-in-out; }
+    .menu-btn span:nth-child(1) {
+      top: 11px; }
+    .menu-btn span:nth-child(2) {
+      top: 23px; }
+    .menu-btn span:nth-child(3) {
+      top: 35px; }
+    .menu-btn.active span:nth-child(1) {
+      top: 20px;
+      -webkit-transform: rotate(135deg);
+      -moz-transform: rotate(135deg);
+      -o-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+      transform: rotate(135deg); }
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+      right: -60px; }
+    .menu-btn.active span:nth-child(3) {
+      top: 20px;
+      -webkit-transform: rotate(-135deg);
+      -moz-transform: rotate(-135deg);
+      -o-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
+      transform: rotate(-135deg); }
+    .menu-btn.active {
+      z-index: 1500;
+      right: 0;
+      top: 0;
+      background-color: transparent; }
+      .menu-btn.active + nav {
+        display: block;
+        opacity: 1;
+        right: 0;
+        width: 250px;
+        background-color: #179bd7;
+        z-index: 1400;
+        padding: 10px;
+        box-shadow: 0 5px 5px 0 grey;
+        text-align: center; }
+        .menu-btn.active + nav ul {
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          flex-direction: column; }
+  .menu-btn.close-menu:hover + nav {
+    display: none; }
+  header {
+    min-width: 0; }
+  nav {
+    min-width: 0; }
+  menu {
+    width: 100%; }
+  section {
+    min-width: 0; }
+  h1 {
+    width: 100%; }
+  section.sale .form,
+  section.sale .timer_block {
+    margin-left: 5%; }
+  footer {
+    min-width: 0; }
+  section.comments {
+    height: auto !important; }
+  header .call {
+    margin: 0 auto; } }
+
+@media (max-width: 1000px) {
+  .comments {
+    display: none; } }
+
+@media (max-width: 940px) {
+  header {
+    padding: 0;
+    min-width: 320px;
+    height: auto; }
+    header .header_info {
+      width: 20%;
+      margin-left: 1%; }
+  #top {
+    width: 100%;
+    text-align: center; }
+  section h3 {
+    margin: 20px auto; }
+  h3 {
+    margin: 0; }
+  section.about {
+    height: 100%; }
+  .eblo {
+    margin: 0 auto; }
+  .eblo__title {
+    margin: 0 auto; }
+  div#why h3 {
+    margin: 0 auto; }
+  section ul.why {
+    padding: 0; }
+    section ul.why li {
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+      justify-content: space-around;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      margin: 0 auto;
+      height: auto;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      text-align: center;
+      width: 100%; }
+      section ul.why li img {
+        width: 68px;
+        height: 68px;
+        margin: 0 auto; }
+      section ul.why li p {
+        text-align: center;
+        padding: 20px 0 0; }
+        section ul.why li p span {
+          width: 100%; }
+  section.how {
+    display: none !important; }
+  section.sale {
+    background: none;
+    padding: 0;
+    height: auto;
+    background-image: radial-gradient(#ffffff, #179bd7);
+    padding-top: 20px;
+    padding-bottom: 20px; }
+  section.sale .timer_block {
+    display: none !important; }
+  section.sale .form {
+    float: none !important;
+    margin: 0 auto !important;
+    display: block !important; }
+  section.map {
+    height: auto; }
+    section.map .page iframe {
+      position: relative;
+      margin-top: 0 !important;
+      width: 100%;
+      right: 0;
+      height: 250px; }
+    section.map .page .contacts {
+      position: relative;
+      padding: 0;
+      margin: 0; }
+      section.map .page .contacts p {
+        width: 100%;
+        margin: 0;
+        text-align: center; }
+  section ul.comments li > div.photo {
+    display: none; }
+  section ul.comments li > div.comment {
+    width: 100%; } }
+
+@media (max-width: 730px) {
+  header .header_info {
+    display: none; }
+  header .call {
+    margin: 0 auto;
+    padding: 0 0 10px; } }
+
+@media (max-width: 530px) {
+  header .call {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    text-align: center; }
+    header .call .adress {
+      margin: 0 auto;
+      -webkit-order: 5;
+      -ms-flex-order: 5;
+      order: 5;
+      margin: 0 auto;
+      -webkit-align-self: center;
+      -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+      width: 100%; }
+    header .call .phones {
+      margin: 0 auto; }
+  .page .call .adress {
+    width: 100%; }
+  header .call a.btn {
+    float: none;
+    margin: 0 auto; } }
+
+@media (max-width: 530px) {
+  section h1 {
+    font-size: 35px; } }

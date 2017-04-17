@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru_RU">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Консультации по написанию дипломных работ в Минске | ☎ + 375 (29) 365-68-00</title>
+	<link rel="stylesheet" href="style-dist.css">
+	<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<script>
+	$(document).ready(function(){
+    $("#form_1").submit(function() { //устанавливаем событие отправки для формы с id=form
+            var form_data = $(this).serialize(); //собераем все данные из формы
+            $.ajax({
+            type: "POST", //Метод отправки
+            url: "mail.php", //путь до php фаила отправителя
+            data: form_data,
+            success: function() {
+                   //код в этом блоке выполняется при успешной отправке сообщения
+                   alert("Ваше сообщение отпрвлено!");
+                    $(this).children('input[type="submit"]').val('Сообщение отправлено')
+            }
+    });
+}); 
+});
+</script>
+	<script>
+$(document).ready(function(){
+	    $("#form_2").submit(function() { //устанавливаем событие отправки для формы с id=form
+            var form_data = $(this).serialize(); //собераем все данные из формы
+            $.ajax({
+            type: "POST", //Метод отправки
+            url: "mail.php", //путь до php фаила отправителя
+            data: form_data,
+            success: function() {
+                   //код в этом блоке выполняется при успешной отправке сообщения
+                   alert("Ваше сообщение отпрвлено!");
+            },
+             error: function() {
+            	alert("Произошла ошибка при передаче данных");
+            }
+    });
+});  
+});
+</script>
+<script>
+$(document).ready(function(){  
+    $("#form_3").submit(function() { //устанавливаем событие отправки для формы с id=form
+            var form_data = $(this).serialize(); //собераем все данные из формы
+            $.ajax({
+            type: "POST", //Метод отправки
+            url: "mail.php", //путь до php фаила отправителя
+            data: form_data,
+            success: function() {
+                   //код в этом блоке выполняется при успешной отправке сообщения
+                   alert("Ваше сообщение отпрвлено!");
+
+            },
+            error: function() {
+            	alert("Произошла ошибка при передаче данных");
+            }
+    });
+
+});       
+});
+
+	</script>
+	<section class="top-section">
+		<div class="container">
+		<div class="top-section-block">
+			<div class="top-section-block-top">
+				<div class="top-section-block-top__logo">
+					<img src="img/logo.jpg" alt="">
+				</div>
+				<div class="top-section-block-top__title"><h1>Агенство проффесональной помощи студентам</h1></div>
+				<div class="top-section-block-top__undertitle">Оставьте заявку чтобы получить консультацию</div>
+			</div>
+			<div class="top-section-block-bottom">
+				<form  method="POST" class="send-form top-section-block-bottom__send-form" id="form_1">
+					<input type="text" class="send-form__input top-section-block-bottom__send-form__input" placeholder="Имя*" name="name" required>
+					<input type="tel" class="send-form__input top-section-block-bottom__send-form__input" placeholder="Телефон*"  name="tel" required >
+					<input type="text" class="send-form__input top-section-block-bottom__send-form__input" placeholder="Email*" name="mailer" required >
+					<input type="submit" class="send-form__input  send-form__input-submit top-section-block-bottom__send-form__input top-section-block-bottom__send-form__input-submit" value="Получить консультацию">
+				</form>
+			</div>
+			</div>
+		</div>
+	</section>
+	<section class="services">
+	<div class="container">
+		<div class="content-card clearfix">
+			<div class="content-card-left">
+				<h3 class="content-card-left__title">Дипломная работа</h3>
+				<div class="content-card-left__icon"><img src="img/icon.png" alt="" class="content-card-left__icon-img"></div>
+				
+			</div>
+			<div class="content-card-right">
+				<p class="content-card__paragraph">Написание и защита дипломной работы является заключительной частью обучения в ВУЗе. Подготовка диплома требует от его разработчика понимания и глубокого осмысления всей структуры предстоящей работы. Для написания грамотной и четко обоснованной дипломной работы необходимо:</p>
+					<ul class="content-card-list">
+						<li class="content-card-list__item">изучить теоретический материал по тематике исследования;</li>
+						<li class="content-card-list__item">систематизировать информационно-аналитический материал по объекту и предмету исследования;</li>
+						<li class="content-card-list__item">разработать логичное обоснование предлагаемых мероприятий или уникальных решений по улучшению.</li>
+					</ul>
+				
+			</div>
+		</div>
+		<div class="content-card clearfix">
+			<div class="content-card-left">
+				<h3 class="content-card-left__title">Курсовая работа</h3>
+				<div class="content-card-left__icon"><img src="img/icon.png" alt="" class="content-card-left__icon-img"></div>
+			</div>
+			<div class="content-card-right">
+				<p class="content-card__paragraph">
+				Курсовые работы / проекты являются важными промежуточными студенческими работами, сдача которых способствует допуску к экзаменационной сессии.  Каждый студент знает, как много драгоценного времени и усилий необходимо потратить на самостоятельное написание курсовой работы. Основными проблемными звеньями выполнения и последующего написания курсовой являются:
+				</p>
+					<ul class="content-card-list">
+						<li class="content-card-list__item">необходимость разработки плана работы;</li>
+						<li class="content-card-list__item">подбор учебно-методической литературы;</li>
+						<li class="content-card-list__item"> раскрытие актуальности темы работы, цели и основных задач работы так необходимых для построения грамотного введения;</li>
+						<li class="content-card-list__item">структурирование информации и анализ проблемы курсовой работы;</li>
+						<li class="content-card-list__item">поиск оптимальных и обоснованных решений для решения ключевой проблемы курсовой работы;</li>
+						<li class="content-card-list__item">высокое качество произведенных расчетов и уникальности подготовленного текстового материала;</li>
+						<li class="content-card-list__item">оформление работы в соответствии со стандартом учебного заведения.</li>
+
+					</ul>
+				
+			</div>
+		</div>
+		<div class="content-card clearfix">
+			<div class="content-card-left">
+				<h3 class="content-card-left__title">КОНТРОЛЬНАЯ РАБОТА</h3>
+				<div class="content-card-left__icon"><img src="img/icon.png" alt="" class="content-card-left__icon-img"></div>
+			</div>
+			<div class="content-card-right">
+				<p class="content-card__paragraph">
+				Контрольная работа в Минске от Агентства «Semestr.by» будет сдана точно в срок, по предоставленному Вами заданию. Чтобы контрольная работа в Беларуси от Агентства «Semestr.by» была выполнена верно и сдана вовремя вам необходимо:
+				</p>
+					<ul class="content-card-list">
+						<li class="content-card-list__item">оставить заявку через форму на нашем сайте или по телефону;</li>
+						<li class="content-card-list__item">предоставить необходимую информацию  – план, задание, методические рекомендации;</li>
+						<li class="content-card-list__item">сдать работу на проверку.</li>
+	
+					</ul>
+				
+			</div>
+		</div>
+		<div class="content-card clearfix">
+
+			<div class="content-card-left">
+				<h3 class="content-card-left__title">ОТЧЁТ ПО ПРАКТИКЕ</h3>
+				<div class="content-card-left__icon"><img src="img/icon.png" alt="" class="content-card-left__icon-img"></div>
+			</div>
+			<div class="content-card-right">
+				<p class="content-card__paragraph">В процессе обучения в образовательном учреждении каждый студент должен пройти обязательную практику из разнообразия следующих возможных вариантов:</p>
+					<ul class="content-card-list">
+						<li class="content-card-list__item">учебную, ознакомительную, аналитическую, организационно-экономическую, учетно-экономическую, производственную, технологическую.
+
+Разновидность практики зависит от специализации. Перед подготовкой дипломной работы либо дипломного проекта студенты проходят преддипломную практику. Прохождение данного вида практики необходимо для:</li>
+						<li class="content-card-list__item">сбора аналитической информации нужной для последующего написания диплома;</li>
+						<li class="content-card-list__item">получения практических навыков работы по выбранной специальности.</li>
+
+					</ul>
+				
+			</div>
+		</div>
+	</div>
+	</section>
+	<section class="form-section clearfix">
+	<div class="container">
+		<div class="form-section-left">
+			<h2 class="form-section__title">Мы сможем вам помочь</h2>
+		</div>
+		<div class="form-section-right">
+			<form method="POST" action="" class="send-form form-section-right-form"  id="form_2">
+				<input type="text" class="send-form__input" placeholder="Имя*" name="name" required>
+				<input type="tel" class="send-form__input" placeholder="Телефон*" required name="tel">
+				<input type="email" class="send-form__input" placeholder="Email* " required  name="mailer">
+				<input type="submit" class="send-form__input-submit  form-section-right-form__submit" value="Получить консультацию"  required>
+			</form>
+		</div>
+		</div>
+	</section>
+	<section class="advantage clearfix">
+	<div class="container">
+		<h2 class="section-title">Почему мы?</h2>
+		<div class="advantage-col">
+			<div class="advantage-col__icon"><img src="img/7_138.png" alt=""></div>
+			<div class="advantage-col__title">ПЕРСОНАЛЬНЫЙ МЕНЕДЖЕР</div>
+			<div class="advantage-col__text"><p>С Вами будет работать закрепленный за Вашим заказом менеджер, который учтет все специфические особенности Вашей работы</p></div>
+		</div>
+		<div class="advantage-col">
+			<div class="advantage-col__icon"><img src="img/8_131.png" alt=""></div>
+			<div class="advantage-col__title">КОНТРОЛЬ КАЧЕСТВА</div>
+			<div class="advantage-col__text"><p>Работа, сделанная Вами будет дополнительно проверена на соответствие заданию, стандартам учебного заведения и установленным параметрам уникальности в системе АНТИПЛАГИАТ.</p></div>
+		</div>
+		<div class="advantage-col">
+			<div class="advantage-col__icon"><img src="img/9_122.png" alt=""></div>
+			<div class="advantage-col__title">СОПРОВОЖДЕНИЕ ДО ЗАЩИТЫ</div>
+			<div class="advantage-col__text"><p>При необходимости мы готовы сотрудничать до успешной защиты Вашей работы. Предоставим консультационную информацию, необходимую для подготовки к защите работы. Поможем подготовить презентацию и доклад</p></div>
+		</div>
+		<div class="advantage-col">
+			<div class="advantage-col__icon"><img src="img/10_108.png" alt=""></div>
+			<div class="advantage-col__title">ДОСТУПНЫЕ ЦЕНЫ</div>
+			<div class="advantage-col__text"><p>Мы заботимся о сохранении конкурентной цены для наших заказчиков. Стоимость любой услуги соизмерима с затратами времени автора,необходимого для Вашей подготовки.</p></div>
+		</div>
+		</div>
+	</section>
+	<section class="contacts">
+		<div class="section-title-container">
+			<h2 class="section-title contacts__title">Контакты:</h2>
+		</div>
+		<div class="container">
+		<div class="contacts__info">
+		<div class="contacts__info-string"><i><b> г. Минск, пр. Независимости, 58, ТЦ «Московско-Венский» 4 этаж, офис 421</b></i></div>
+		<table class="contacts-table">
+			<tr class="margin_10">
+				<td><em><b>Время работы Офиса:</b></em> </td>
+				<td> 09:00-18:00, I-V</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>10:00-16:00, VI</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>  Выходной: VII</td>
+			</tr>
+			</table>
+			<table class="contacts-table">
+			<tr class="margin_10">
+				<td><em><b>Телефоны для связи:</b></em></td>
+				<td>+ 375 (29) 365-68-00</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td> + 375 (29) 733-99-40</td>
+			</tr>
+			<tr class="margin_10">
+				<td></td>
+				<td> + 375 (25) 743-76-63</td>
+			</tr>
+			</table>
+			<table class="contacts-table">
+			<tr>
+				<td><em><b>Почта для связи:</b></em></td>
+				<td> zakaz@semestr.by</td>
+			</tr>
+			</table>
+		<p>Прием онлайн заявок на сайте осуществляется КРУГЛОСУТОЧНО!</p>
+		</div>
+		<div class="map">
+		<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Afe3bbd668c0af1af6932f1eb9dd193ce16284493c85a4857251a00fc95fe66c8&amp;width=850&amp;height=360&amp;lang=ru_RU&amp;scroll=true"></script>
+		</div>
+		</div>
+	</section>
+	<section class="form-section clearfix form-section--color-first">
+	<div class="container">
+		<div class="form-section-left">
+			<h2 class="form-section__title">С нами учиться легко</h2>
+		</div>
+		<div class="form-section-right">
+			<form method="POST" class="send-form form-section-right-form"  id="form_3">
+				<input type="text" class="send-form__input" placeholder="Имя*" required="required" name="name">
+				<input type="tel" class="send-form__input" placeholder="Телефон*"  required="required" name="tel">
+				<input type="email" class="send-form__input" placeholder="Email* " required="required" name="mailer">
+				<input type="submit" class="send-form__input-submit  form-section-right-form__submit" value="Получить консультацию">
+			</form>
+		</div>
+		</div>
+	</section>
+	<section class="recvizits">
+		<div class="container">
+			<h3 class="recvizits__title">Реквизиты:</h3>
+		
+		<div class="tecvizits__info">
+		<b>ИП Качан С.В. УНП 190536511</b>
+		<br>
+
+<b>Свидетельство № 190536511 от 07.05.2004 г.</b>
+<br>
+
+<b>Юридический адрес:</b>
+<br>
+<p>г. Минск, пр. Рокоссовского, д. 156, кв. 8</p>
+<br>
+<b>Место оказания услуг:</b>
+<br>
+<b>г. Минск, пр. Независимости, 58,ТЦ «Московско-Венский» 4 этаж, офис 421</b>
+<br>
+<b>Банковские реквизиты:</b>
+<br> 
+<p>Расчетный счет 3013065230017 филиал №529 «Белсвязь» ОАО «Беларусбанк», код 720</p>
+<br>
+<b>Адрес банка:</b>
+<br>
+<p>220005, г. Минск, пр. Независимости, 56</p>
+</div>
+	</div>
+	</section>
+
+</html>

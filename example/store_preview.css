@@ -1,0 +1,466 @@
+@charset "UTF-8";
+
+html {
+    font-family: Arial, sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+body.mobile {
+    background: #131417;
+}
+
+a, button {
+    outline: none
+}
+
+.container { max-width: 1000px; width: auto; padding: 0 20px; }
+
+.hidden {
+    display: none;
+}
+
+.preview_header {
+    background: #1e2024;
+    height: 110px;
+    position: fixed;
+    width: 100%;
+}
+.preview_header.collapsed {
+    overflow: hidden;
+}
+
+.preview {
+    margin-top: 110px;
+}
+
+.header {
+    margin: auto;
+    padding-top: 25px;
+    width: 1000px;
+}
+
+.h1 {
+    float: left;
+    width: 250px;
+}
+
+.h2 {
+    float: left;
+    width: 150px;
+}
+
+.h2.order {
+    width: 250px;
+}
+
+.h3 {
+    float: left;
+    width: 300px;
+}
+.h4 {
+    float: left;
+    text-align: right;
+    width: 300px;
+}
+.theme_preview .h4 {
+    width: 600px;
+}
+.theme_preview .h4.order {
+    width: 500px;
+}
+
+.editor_preview .h4 {
+    width: 450px;
+}
+
+.lpg_logo {
+    width: 200px;
+}
+
+.back_arrow {
+    margin-top: 20px;
+}
+.back_link {
+    color: #3ea9f5;
+    font-size: 14px;
+    text-decoration: underline;
+    vertical-align: 2px;
+}
+
+.theme_switch_links {
+    margin-top: 14px;
+}
+
+.switch_theme_link, .t_qr {
+    background: url(https://static.lpgenerator.ru/media/css/images/store_preview_sprite.png) no-repeat;
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+}
+.switch_theme_link.t_main { background-position: 0 0;}
+.switch_theme_link.t_main:hover { background-position: 0 -35px; }
+.switch_theme_link.t_ty { background-position: -35px 0;}
+.switch_theme_link.t_ty:hover { background-position: -35px -35px; }
+.switch_theme_link.t_mob { background-position: -70px 0;}
+.switch_theme_link.t_mob:hover { background-position: -70px -35px; }
+.t_qr { background-position: -105px 0;}
+.t_qr:hover { background-position: -105px -35px; }
+
+.buy_btn {
+    background: #fa8501;
+    border-radius: 7px;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    height: 43px;
+    line-height: 43px;
+    margin-top: 8px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 200px;
+}
+.buy_btn:hover {
+    background: #ec7f00;
+    color: #fff;
+    text-decoration: none;
+}
+.buy_btn .arrow_small {
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.theme_preview .buy_btn {
+    border: none;
+    width: 400px;
+}
+
+.theme_preview .order .buy_btn {
+    border: none;
+    width: 180px;
+}
+
+.buy_dropdown.dropdown.dropdown-tip:before {
+    display: none;
+}
+
+.buy_dropdown.dropdown.dropdown-tip:after {
+    display: none;
+}
+
+.buy_dropdown.dropdown.dropdown-tip {
+    margin-top: 3px;
+    width: 200px;
+}
+
+.buy_dropdown.dropdown .dropdown-menu, .qr_dropdown.dropdown .dropdown-menu {
+    background: #131417;
+    border: 1px solid #6a6b6d;
+}
+
+.buy_dropdown.dropdown .dropdown-menu li {
+	margin-bottom: 15px;
+}
+
+.buy_dropdown.dropdown .dropdown-menu li > a {
+    color: #818282;
+    font-size: 14px;
+    line-height: 20px;
+	width: 80px;
+}
+
+.buy_dropdown.dropdown .dropdown-menu li > a:hover {
+    background: #131417;
+    color: #fff;
+}
+
+.qr_dropdown.dropdown.dropdown-tip {
+    width: 180px;
+}
+
+.qr_dropdown.dropdown.dropdown-tip:before {
+}
+
+.qr_dropdown.dropdown.dropdown-tip:after {
+    border-bottom-color: #6a6b6d;
+}
+
+.qr_dropdown.dropdown .dropdown-menu {
+    margin-left: 75px;
+    width: 180px;
+}
+
+.qr_dropdown.dropdown .dropdown-menu li {
+    text-align: center;
+}
+
+.qr_img {
+    margin: 5px 0;
+}
+
+.qr_text {
+    color: #808181;
+    display: block;
+    font-size: 11px;
+    line-height: 1.1;
+    margin-bottom: 5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.store_star {
+    vertical-align: -1px;
+}
+
+.price {
+    display: block;
+    font-size: 18px;
+    margin-top: 2px;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.mobile_wrapper {
+    padding-top: 140px;
+}
+.theme_mobile.phone_wrapper {
+    background: url(images/phone_bg_vertical_10122013.png) 50% 0 no-repeat;overflow: hidden;
+    height: 574px;
+    width: 332px;
+    position: relative;
+    margin: 0 auto;
+}
+.theme_mobile.phone_wrapper iframe {
+    height: 480px;
+    width: 320px;
+    position: absolute;
+    top: 46px;
+    left: 6px;
+}
+.theme_mobile .preview { margin-top: 0; }
+
+
+.close_btn {
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 31px;
+    line-height: 31px;
+    padding: 0 20px;
+    text-decoration: none;
+    background: #acacac;
+    border: 1px solid #acacac;
+    margin-top: 15px;
+}
+.close_btn:hover { background: #787878; }
+.close_btn img { vertical-align: -3px; margin-right: 5px; }
+
+/* variants dropdown */
+.variants_dropdown{
+    display: inline-block;
+    position: relative;
+    background: #101010;
+    border-radius: 10px 10px 0 0;
+    padding: 1px;
+    line-height: normal;
+    margin-left: 10px;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+
+.variants_dropdown > a{
+    display: inline-block;
+    padding: 7px 16px;
+    font-family: Arial, serif;
+    font-size: 14px;
+    color : #989898;
+    text-decoration: none;
+    background: #131417;
+    border-radius: 10px 10px 0 0;
+    width : 190px;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.variants_dropdown > a span{
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 4px 3.5px 0 3.5px;
+    border-color: #2b2b2b transparent transparent transparent;
+    position: absolute;
+    right : 12px;
+    top : 15px;
+}
+
+.variants_dropdown ul{
+    position: absolute;
+    top : 100%;
+    background: #101010;
+    left: 0;
+    right:0;
+    z-index: 1000;
+    padding: 5px;
+    margin: 0;
+    display: none;
+    list-style:none;
+}
+
+.variants_dropdown.hover ul{
+    display: block;
+}
+
+.variants_dropdown ul a{
+    display: block;
+    color : #747575;
+    font-size: 12px;
+    font-family: Arial, serif;
+    padding: 5px 0 5px 11px;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.variants_dropdown ul a:hover{
+    background: #17181b;
+    color: #c1c1c1;
+}
+
+.phone_wrapper {
+    background: url(images/phone_bg_vertical_10122013.png) 50% 0 no-repeat;overflow: hidden;
+    height: 574px;
+    width: 332px;
+    position: relative;
+    margin: 140px auto 0
+}
+
+.phone_wrapper iframe {
+    height: 480px;
+    width: 320px;
+    position: absolute;
+    top: 46px;
+    left: 6px;
+}
+
+.preview_dialog.ui-widget-content {
+    background: #2c2c2c;
+    border: none;
+    border-radius: 10px;
+}
+.preview_dialog .ui-widget-header {
+    background: #2c2c2c;
+    border: none;
+}
+.preview_dialog .ui-widget-header .ui-button {
+    border: none;
+    background: none;
+    height: 21px;
+    width: 21px;
+    padding-top: 5px;
+}
+.preview_dialog .ui-widget-header.ui-dialog-titlebar {
+    padding: 0.6em 1em;
+}
+.preview_dialog .ui-widget-header .ui-state-default {
+    background-image: url(https://static.lpgenerator.ru/media/css/images/preview_dialog_close_btn.png);
+}
+.preview_dialog .ui-widget-header .ui-state-default:hover {
+    opacity: 0.7;
+}
+.preview_dialog .ui-widget-header .ui-state-default .ui-button-icon-primary {
+    background-image: none;
+}
+
+.preview_dialog .title {
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+.ui-widget-overlay {
+   opacity: 0.8 !important;
+}
+.order_design_form {
+    text-align: center;
+    width: 550px;
+    margin: 0 auto;
+}
+.order_design_form input[type=text] {
+    display: block;
+    width: 540px;
+    height: 38px;
+    padding: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    outline: none;
+}
+.order_design_form textarea {
+    width: 540px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    height: 120px;
+    font-size: 14px !important;
+    outline: none;
+}
+
+.order_design_form button {
+    border: none;
+    text-transform: none;
+    width: 550px;
+    line-height: normal;
+    height: 60px;
+}
+
+/*
+    Hide toolbar for editor preview
+*/
+
+#preview_header_hide{
+    width: 28px;
+    height: 21px;
+    position: absolute;
+    top : 110px;
+    right: 100px;
+    cursor: pointer;
+    border-radius: 0 0 8px 8px;
+    background: #1e2024;
+}
+
+#preview_header_hide:before{
+    content: "";
+    position: absolute;
+    top : 0;
+    left: 0;
+    width : 100%;
+    height: 100%;
+    background: url(https://static.lpgenerator.ru/media/css/images/preview/triangle.png) 50% 30% no-repeat;
+}
+
+#preview_header_hide.collapsed:before{
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    background-position: 50% 50%;
+}

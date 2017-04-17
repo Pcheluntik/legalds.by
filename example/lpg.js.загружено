@@ -1,0 +1,320 @@
+/**
+ * LPG object main utils
+ */
+
+
+if ( !LPG ) {
+	if ( !window.LPG ) {
+		var LPG = {};
+	} else {
+		var LPG = window.LPG;
+	}
+}
+
+
+LPG.namespace = function (ns_string) {
+	var parts = ns_string.split('.'),
+		parent = this;
+// отбросить начальный префикс – имя глобального объекта
+	if (parts[0] === 'LPG') {
+		parts = parts.slice(1);
+	}
+	for (var i = 0, l = parts.length; i < l; i += 1) {
+// создать свойство, если оно отсутствует
+		if (typeof parent[parts[i]] === 'undefined') {
+			parent[parts[i]] = {
+				_parent: parent
+			};
+		}
+		parent = parent[parts[i]];
+		parent._rootObj = this;
+	}
+	return parent;
+};
+
+if ( typeof LPG.form !== 'function' ) {
+	LPG.form = function (action, params, callback, additionalArgs) {
+		var request = {'request': JSON.stringify(params)},
+			$ = window.$ || window.jq_144,
+			jqxhr = $.post('/app/'+action+'/', request, function(response) {
+				var data = response.response.data,
+					errors = response.response.errors,
+					critical = response.critical;
+				if (callback) callback(data, errors, critical);
+			}, 'json');
+
+		if ( additionalArgs && additionalArgs.failCallback ) {
+			jqxhr.fail(additionalArgs.failCallback);
+		}
+		if ( additionalArgs && additionalArgs.alwaysCallback ) {
+			jqxhr.always(additionalArgs.alwaysCallback);
+		}
+	};
+}
+
+
+LPG.namespace('LPG.utils');
+
+LPG.utils.objClone = function ( obj ) {
+	var clone = {};
+	for ( var k in obj ) {
+		if ( !obj.hasOwnProperty(k) ) { continue; }
+		clone[k] = obj[k];
+	}
+	return clone;
+};
+
+LPG.utils.urlData = (function () {
+	var urlData = {};
+	if (window.location.search) {
+		var paramsStr = decodeURIComponent( window.location.search.substring(1).replace(/\+/g, ' ') ),
+			params = paramsStr.split('&');
+
+		for (var i = 0, l = params.length; i < l; i += 1) {
+			urlData[params[i].split('=')[0]] = params[i].split('=')[1];
+		}
+	}
+
+	return {
+		getValue: function ( param ) {
+			var value;
+			if ( urlData[param] !== undefined ) {
+				value = urlData[param];
+			} else {
+				value = '';
+			}
+			return value;
+		},
+		getNames: function () {
+			return Object.keys( urlData );
+		}
+	};
+}());
+
+
+/* TODO: при добавлении второй метрики переписать на класс, чтобы избежать проблем с буферизацией */
+LPG.namespace('LPG.metrics');
+
+LPG.metrics.eventsBuffer = [];
+
+LPG.metrics.addToBuffer = function ( data ) {
+	this.eventsBuffer.push( data );
+};
+
+LPG.metrics.fireBuffered = function ( callback ) {
+	var opRes = false,
+		eventData;
+
+	while ( this.eventsBuffer.length ) {
+		eventData = this.eventsBuffer.pop();
+		try {
+			callback( eventData );
+			opRes = true;
+		} catch (e) {
+			console.log('Metrics actions filed: ', e);
+			this.eventsBuffer.push( eventData );
+		}
+	}
+	return opRes;
+};
+
+LPG.metrics.fireEvent = function ( data ) {
+	/**
+	 * data = {
+	 * 		eventName:		string,
+	 * 		eventParams:	{}
+	 * }
+	 */
+	if ( 'undefined' !== typeof this.fireMetricsListeners ) {
+		try {
+			this.fireBuffered( this.fireMetricsListeners );
+			this.fireMetricsListeners( data );
+		} catch (e) {
+			console.log('Metrics actions filed: ', e);
+		}
+	} else {
+		this.addToBuffer( data );
+	}
+};
+
+LPG.metrics.widgetEventsFire = {
+	text: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add textblock',
+			eventParams: {
+				'character quantity': tmp_block.content.text.length
+			}
+		});
+	},
+	button: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add button',
+			eventParams: {
+				'open new window': tmp_block.content.target === '_blank' ? 'yes' : 'no'
+			}
+		});
+	},
+	form: function ( tmp_block ) {
+		var hasMapping = (function () {
+				var content = tmp_block.content,
+					has = false;
+				for ( var widgetName in content ) {
+					content.hasOwnProperty( widgetName );
+					if ( typeof content[widgetName].mapping !== 'undefined' ) {
+						has = true;
+						break;
+					}
+				}
+				return has;
+			}()),
+			toCrm = (function () {
+				var content = tmp_block.content,
+					to = false;
+				for ( var widgetName in content ) {
+					content.hasOwnProperty( widgetName );
+					if ( content[widgetName].no_crm === 'undefined' || content[widgetName].no_crm !== '1' ) {
+						to = true;
+						break;
+					}
+				}
+				return to;
+			}());
+
+		LPG.metrics.fireEvent({
+			eventName: 'Add form',
+			eventParams: {
+				'mapping':	hasMapping ? 'yes' : 'no',
+				'to crm':	toCrm ? 'yes' : 'no',
+				'action':	tmp_block.css.action
+			}
+		});
+	},
+	html: function ( tmp_block ) {
+		LPG.metrics.fireEvent({ eventName: 'Add html', eventParams: {} });
+	},
+	meta: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add metatags',
+			eventParams: {
+				'robots noindex':	tmp_block.content.robots_noindex ? 'yes' : 'no',
+				'robots nofollow':	tmp_block.content.robots_nofollow ? 'yes' : 'no',
+				'og:image':			tmp_block.content.og_image
+			}
+		});
+	},
+	scripts: function ( tmp_block ) {
+		var positionStrings = {
+			head:		'head',
+			before:		'body',
+			after:		'footer'
+		};
+
+		LPG.metrics.fireEvent({
+			eventName: 'Add script',
+			eventParams: {
+				'name':			tmp_block.content[0].name,
+				'position':		positionStrings[tmp_block.content[0].position]
+			}
+		});
+	},
+	timer: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add timer',
+			eventParams: {
+				'expiration date':		tmp_block.content.timer_type === 'event' ? 'yes' : 'no',
+				'quantitydown':			tmp_block.content.timer_type === 'countdown' ? 'yes' : 'no',
+				'show days':			tmp_block.content.show_days ? 'yes' : 'no',
+				'show hours':			tmp_block.content.show_hours ? 'yes' : 'no',
+				'show minutes':			tmp_block.content.show_minutes ? 'yes' : 'no',
+				'show seconds':			tmp_block.content.show_seconds ? 'yes' : 'no'
+			}
+		});
+	},
+	popupv2: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add popup',
+			eventParams: {
+				'show options':		tmp_block.content.actions.showEvent || 'click',
+				'animation type':	tmp_block.content.actions.animation
+			}
+		});
+	},
+	map: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add map',
+			eventParams: {
+				'type':			tmp_block.content.map_type,
+				'all wight':	tmp_block.content.fullWidth ? 'yes' : 'no'
+			}
+		});
+	},
+	slider: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add slider',
+			eventParams: {
+				'type':			tmp_block.content.slider_type,
+				'quantity':		tmp_block.content.slides.length
+			}
+		});
+	},
+	gallery: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add gallery',
+			eventParams: {
+				'pic quantity':		tmp_block.content.images.length,
+				'pages quantity':	tmp_block.content.images.length/tmp_block.content.img_count
+			}
+		});
+	},
+	youtube: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add youtube',
+			eventParams: {
+				'autoplay':		tmp_block.content.autoplay ? 'yes' : 'no',
+				'footer':		tmp_block.content.controls ? 'yes' : 'no',
+				'loop':			tmp_block.content.loop ? 'yes' : 'no',
+				'header':		tmp_block.content.showinfo ? 'yes' : 'no',
+				'all wight':	tmp_block.content.fullWidth ? 'yes' : 'no'
+			}
+		});
+	},
+	font: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add extra fonts',
+			eventParams: {
+				'name':			tmp_block.content.names.replace(/\n/g, ', '),
+				'quantity':		tmp_block.content.names.split('\n').length
+			}
+		});
+	},
+	robokassa: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add robokassa',
+			eventParams: {
+				'sum':				tmp_block.content.amount,
+				'button text':		tmp_block.content.buttonText
+			}
+		});
+	},
+	robokassa: function ( tmp_block ) {
+		LPG.metrics.fireEvent({
+			eventName: 'Add robokassa',
+			eventParams: {
+				'sum':				tmp_block.content.amount,
+				'button text':		tmp_block.content.buttonText
+			}
+		});
+	}
+};
+
+LPG.metrics.fireEditorNewElem = function ( tmp_block ) {
+	this.fireEvent({ eventName: 'Add Object', eventParams: { type: tmp_block.type } });
+
+	if ( typeof this.widgetEventsFire[tmp_block.type] !== 'undefined' ) {
+		try {
+			this.widgetEventsFire[tmp_block.type]( tmp_block );
+		} catch (e) {
+			console.log('Actions fire filed: ', e);
+		}
+	}
+};
