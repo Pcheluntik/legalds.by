@@ -352,6 +352,10 @@
     margin: 0 auto;
 
   }
+  section.map .page .contacts p {
+    width: 100% !important;
+    padding: 0;
+  }
 }
 
 @media (max-width: 530px) {
