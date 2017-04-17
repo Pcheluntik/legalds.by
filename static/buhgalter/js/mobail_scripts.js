@@ -9,7 +9,7 @@ function download_price() {
   });
   price_btn.classList.add('downloable');
   price_btn.setAttribute("href", "price.pdf");
-  price_btn.setAttribute("download", "true");
+  price_btn.setAttribute("download", "price.pdf");
 };
 
 download_price();
